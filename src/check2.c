@@ -1,4 +1,5 @@
 #include "fillit.h"
+#include <stdlib.h>
 
 #define x1 tet[i].coor[j].x
 #define y1 tet[i].coor[j].y
@@ -6,6 +7,55 @@
 #define y2 tet[i].coor[k].y
 
 #include <stdio.h>
+
+char ***ft_fill_grids(char ***grids, int tot_tet)
+{
+	int	i;
+	int	j;
+	int	h;
+
+	i = 0;
+	while (i < 2)
+	{
+		j = 0;
+		while (j <= tot_tet * 4 - 1)
+		{
+			h = 0;
+			grids[i][j][tot_tet * 4] = '\0';
+			while (h <= tot_tet * 4 - 1)
+			{
+				grids[i][j][h] = '.';
+				h++;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (grids);
+}
+
+char ***ft_init_grids(int tot_tet)
+{
+	char	***grids;
+	int	i;
+	int	j;
+
+	i = 0;
+	grids = (char ***)malloc(sizeof(char **) * 2);
+	while (i < 2)
+	{
+		j = 0;
+		grids[i] = (char **)malloc(sizeof(char *) * (tot_tet * 4 - 1));
+		while (j <= tot_tet * 4 - 1)
+		{
+			grids[i][j] = (char *)malloc(sizeof(char) * (tot_tet * 4));
+			j++;
+		}
+		i++;
+	}
+	grids = ft_fill_grids(grids, tot_tet);
+	return (grids);
+}
 
 int	ft_count_touchs(t_tet *tet, int i, int j) /*compte le nb de contact entre # et ses voisins */
 {
@@ -80,5 +130,9 @@ void	ft_check_4(t_tet *tet, int tot_tet) /*check du nb de # */
 	if (a == 0)
 		ft_putstr("error\n");
 	else
+	{
 		ft_putstr("VICTOIIIIIRE\n"); /*prochaine ft */
+		tet[0].size_tet = tot_tet;
+		ft_fillit(tet, ft_init_grids(tot_tet), 0);
+	}
 }

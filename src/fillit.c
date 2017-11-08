@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-int	ft_arret(char **grid, t_tet *tet, int tot_tet)/*check si tous les "places sont au max"*/
+int	ft_arret(char **grid, t_tet *tet, int tot_tet)
 {
 	int	i;
 	int	stack;
@@ -128,11 +128,12 @@ void	ft_fillit(t_tet *tet, char ***grids, int cur_tet)
 		if (ft_arret(grids[0], tet, SIZE) == 1)
 		{
 			cur_tet--;
-			/*printf("Place du %de tet :\nx = %d\ny = %d\n\ngrid1 =\n", cur_tet, tet[cur_tet].place.x, tet[cur_tet].place.y);*/
+			/*printf("Place du %de tet :\nx = %d\ny = %d\n\n", cur_tet, tet[cur_tet].place.x, tet[cur_tet].place.y);*/
+			printf("\ngrid1 =\n");
 			ft_aff_grid(grids[0], tet);
-			/*printf("ft_arret = %d\n", ft_arret(grids[0], tet, SIZE));
+			printf("\nft_arret = %d\n", ft_arret(grids[0], tet, SIZE));
 			printf("\n\ngrid2 =\n");
-			ft_aff_grid(grids[1], tet);*/
+			ft_aff_grid(grids[1], tet);
 			printf("\n\n\n-----------------------\n\n\n");
 			ft_cpy_grid(grids, ft_cmp_grid(grids[0], grids[1], tet), tet);
 			ft_remove_tet(grids, tet, cur_tet);
