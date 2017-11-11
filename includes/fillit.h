@@ -27,5 +27,6 @@ void	ft_cpy_grid(char ***grids, char **grid, t_tet *tet);
 void	ft_aff_grid(char **grid, t_tet *tet);
 void	ft_remove_tet(char ***grids, t_tet *tet, int cur_tet);
 int	ft_end_tet(t_tet *tet, int cur_tet);
+int	ft_check_place(t_tet *tet, int cur_tet, int a);
 int	ft_check_grid_bis(char **grid, t_tet *tet, int cur_tet);
 #endif

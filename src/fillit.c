@@ -13,7 +13,7 @@ int	ft_arret(char **grid, t_tet *tet, int tot_tet)
 
 	i = 0;
 	stack = 0;
-	while (i < tot_tet)
+	while (i < tot_tet - 1)/* -1 ou pas ?*/
 	{
 		/*if (tet[i].place.x == SIZE * 4 - 1 && tet[i].place.y == SIZE * 4 - 1)*/
 		if (ft_check_grid_bis(grid, tet, i) == 0)
@@ -49,11 +49,11 @@ int	ft_chg_tet_place(t_tet *tet, int cur_tet, char ***grids)
 {
 	if (ft_end_tet(tet, cur_tet) == 1)
 	{
-		if (tet[cur_tet].place.x < SIZE * 4 - 1)
+		if (ft_check_place(tet, cur_tet, 1) == 1)
 			tet[cur_tet].place.x++;
 		else
 		{
-			if (tet[cur_tet].place.y < SIZE * 4 - 1)
+			if (ft_check_place(tet, cur_tet, 2) == 1)
 			{
 				tet[cur_tet].place.x = 0;
 				tet[cur_tet].place.y++;

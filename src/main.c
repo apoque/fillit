@@ -20,8 +20,8 @@ int	ft_count_bufsize(char *doc)
 	while (read(fd, buf, BUF_SIZE))
 			nb++;
 	close(fd);
-	/*printf("il y a %d tetris\n",(nb+1)/21);*/ 
-	return (nb); /*il y a en fait (nb+1)/5 tetris*/
+	/*printf("il y a %d tetris\n",(nb+1)/21);*/
+	return (nb); /*il y a en fait (nb+1)/21 tetris*/
 }
 
 void	ft_doc_to_char(char *doc)
@@ -36,7 +36,7 @@ void	ft_doc_to_char(char *doc)
 	if(!(buf = (char *)malloc(sizeof(char) * (nb + 1))))
 		ft_putstr("error memalloc\n");;
 	read(fd, buf, nb);
-	buf[ft_count_bufsize(doc) + 1] = '\0';
+	buf[nb + 1] = '\0';
 	close(fd);
 	printf("%s", buf);
 	ft_check_1(buf, nb);

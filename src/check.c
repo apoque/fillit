@@ -37,7 +37,7 @@ t_tet	*ft_init_tets(int tot_tet)
 	j = 0;
 	if (!(tets = (t_tet *)malloc(sizeof(t_tet) * tot_tet)))
 		return (NULL);
-	while (i++ <= tot_tet - 1)
+	while (i <= tot_tet - 1)
 	{
 		tets[i].num_tet = 0;
 		tets[i].size_tet = 0;
@@ -51,6 +51,7 @@ t_tet	*ft_init_tets(int tot_tet)
 			tets[i].coor[j] = *coord;
 			j++;
 		}
+		i++;
 	}
 	return (tets);
 }
@@ -78,13 +79,15 @@ int	ft_check_3(char *doc, int cur_tet, int line, t_tet *tet) /*ft de check de li
 	while (col <= 4 && a == 1) /*col = 4 -> fin de ligne*/
 	{
 		if (doc[(line - cur_tet) * 5 + col + cur_tet - 2] == '.')
+		{
 			col++;
+		}
 		else
 		{
 			if (doc[(line - cur_tet) * 5 + col + cur_tet - 2] == '#')
 			{
 				tet = ft_fill_tet(tet, cur_tet, col, line - 5 * (cur_tet - 1));
-					col++;
+				col++;
 			}
 			else
 			{
@@ -116,9 +119,7 @@ int	ft_check_2(char *doc, int cur_tet, int line, t_tet *tet)
 		}
 	}
 	else
-	{
 		a = ft_check_3(doc, cur_tet, line, tet);
-	}
 	return (a);
 }
 
@@ -139,6 +140,7 @@ void	ft_check_1(char *doc, int nb)
 	/*printf("nb = %d\ntot_tet = %d\n", nb, tot_tet);*/
 	while (line <= tot_tet * 5 - 1 && a == 1) /*nb de ligne au totale*/
 	{
+		/*printf("\nline = %d\n", line);*/
 		cur_tet = line / 5 + 1; /*numero du tetris courrant*/
 		a = ft_check_2(doc, cur_tet, line, tet); /*check ligne courrante*/
 		line++;
