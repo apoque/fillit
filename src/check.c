@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/16 12:18:32 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/18 18:45:16 by apoque           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 #include <stdlib.h>
 
 #include <stdio.h>
 
-/*void	ft_aff_coor(t_tet *tet, int tot_tet)
+void	ft_aff_coor(t_tet *tet, int tot_tet)
 {
 	int	i;
 	int	j;
@@ -14,6 +26,8 @@
 		printf("\n[[[[[[[[[[  TET N* %d  ]]]]]]]]]]\n", i + 1);
 		printf("char = %c\n", tet[i].name);
 		printf("size = %d\n", tet[i].size_tet);
+		printf("place.x = %d\n", tet[i].place.x);
+		printf("place.y = %d\n", tet[i].place.y);
 		j = 0;
 		while (j <= 3)
 		{
@@ -24,7 +38,7 @@
 		}
 		i++;
 	}
-}*/
+}
 
 t_tet	*ft_init_tets(int tot_tet)
 {
@@ -42,6 +56,8 @@ t_tet	*ft_init_tets(int tot_tet)
 		tets[i].num_tet = 0;
 		tets[i].size_tet = 0;
 		tets[i].name = 0;
+		tets[i].place.x = 0;
+		tets[i].place.y = 0;
 		while (j <= 4)
 		{
 			if(!(coord = (t_coor *)malloc(sizeof(t_coor))))
@@ -63,13 +79,13 @@ t_tet	*ft_fill_tet(t_tet *tet, int cur_tet, short x, short y)
 	tet[cur_tet - 1].name = 'A' + cur_tet - 1;
 	if (tet[cur_tet - 1].size_tet <= 4)
 	{
-		tet[cur_tet - 1].coor[tet[cur_tet - 1].size_tet - 1].x = x;
-		tet[cur_tet - 1].coor[tet[cur_tet - 1].size_tet - 1].y = y;
+		tet[cur_tet - 1].coor[tet[cur_tet - 1].size_tet - 1].x = x - 1;
+		tet[cur_tet - 1].coor[tet[cur_tet - 1].size_tet - 1].y = y - 1;
 	}
 	return (tet);
 }
 
-int	ft_check_3(char *doc, int cur_tet, int line, t_tet *tet) /*ft de check de ligne de tetris*/
+int		ft_check_3(char *doc, int cur_tet, int line, t_tet *tet) /*ft de check de ligne de tetris*/
 {
 	int	col;
 	int	a;
@@ -105,7 +121,7 @@ int	ft_check_3(char *doc, int cur_tet, int line, t_tet *tet) /*ft de check de li
 	return (a);
 }	
 
-int	ft_check_2(char *doc, int cur_tet, int line, t_tet *tet)
+int		ft_check_2(char *doc, int cur_tet, int line, t_tet *tet)
 {
 	int	a;
 
@@ -150,7 +166,7 @@ void	ft_check_1(char *doc, int nb)
 	if (a == 1)
 	{
 		/*printf("VICTOIIIIIIRE\n");*/
-		/*ft_aff_coor(tet, tot_tet);*/
+		ft_aff_coor(tet, tot_tet);
 		ft_check_4(tet, tot_tet);
 	}
 	else

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/16 12:21:24 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/16 12:21:35 by apoque           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -9,10 +21,10 @@
 
 #include <stdio.h>
 
-int	ft_count_bufsize(char *doc)
+int		ft_count_bufsize(char *doc)
 {
-	int	fd;
-	int	nb;
+	int		fd;
+	int		nb;
 	char	buf[BUF_SIZE];
 
 	nb = 0;
@@ -26,9 +38,9 @@ int	ft_count_bufsize(char *doc)
 
 void	ft_doc_to_char(char *doc)
 {
-	int	fd;
+	int		fd;
 	char	*buf;
-	int	nb;
+	int		nb;
 
 	nb = ft_count_bufsize(doc);	
 	/*printf("%d\n", nb);*/
@@ -42,7 +54,7 @@ void	ft_doc_to_char(char *doc)
 	ft_check_1(buf, nb);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 
 	if (ac != 2)

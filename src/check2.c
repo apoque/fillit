@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/16 12:19:15 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/16 12:19:50 by apoque           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 #include <stdlib.h>
 
@@ -8,7 +20,7 @@
 
 #include <stdio.h>
 
-char ***ft_fill_grids(char ***grids, int tot_tet)
+char	***ft_fill_grids(char ***grids, int tot_tet)
 {
 	int	i;
 	int	j;
@@ -34,11 +46,11 @@ char ***ft_fill_grids(char ***grids, int tot_tet)
 	return (grids);
 }
 
-char ***ft_init_grids(int tot_tet)
+char	***ft_init_grids(int tot_tet)
 {
 	char	***grids;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	grids = (char ***)malloc(sizeof(char **) * 2);
@@ -57,7 +69,7 @@ char ***ft_init_grids(int tot_tet)
 	return (grids);
 }
 
-int	ft_count_touchs(t_tet *tet, int i, int j) /*compte le nb de contact entre # et ses voisins */
+int		ft_count_touchs(t_tet *tet, int i, int j) /*compte le nb de contact entre # et ses voisins */
 {
 	int	k;
 	int	touchs;
@@ -76,7 +88,7 @@ int	ft_count_touchs(t_tet *tet, int i, int j) /*compte le nb de contact entre # 
 	return (touchs);
 }
 
-int	ft_check_5(t_tet *tet, int tot_tet) /*check position des differents #*/
+int		ft_check_5(t_tet *tet, int tot_tet) /*check position des differents #*/
 {
 	int	i;
 	int	j;

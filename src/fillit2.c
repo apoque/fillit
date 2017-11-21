@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fillit2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/16 12:20:32 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/21 13:16:21 by apoque           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 #include <stdlib.h>
 
@@ -9,6 +21,7 @@
 
 void	ft_remove_tet(char ***grids, t_tet *tet, int cur_tet)
 {
+	printf("debut ft_remove_tet\n");
 	int	i;
 	int	j;
 
@@ -24,6 +37,7 @@ void	ft_remove_tet(char ***grids, t_tet *tet, int cur_tet)
 		}
 		i++;
 	}
+	printf("fin ft_remove_tet\n");
 	/*i = 0;
 	while (i < 4)
 	{
@@ -32,8 +46,9 @@ void	ft_remove_tet(char ***grids, t_tet *tet, int cur_tet)
 	}*/
 }
 
-int	**ft_init_dim(void)
+int		**ft_init_dim(void)
 {
+	//printf("debut ft_init_dim\n");
 	int	**dim;
 	int	i;
 	int	j;
@@ -53,11 +68,13 @@ int	**ft_init_dim(void)
 		}
 		i++;
 	}
+	//printf("fin ft_init_dim\n");
 	return (dim);
 }
 
-int	*ft_cmp_dim(int *dim, int i, int j)
+int		*ft_cmp_dim(int *dim, int i, int j)
 {
+	//printf("debut ft_cmp_dim\n");
 	if (j < dim[0])
 		dim[0] = j;
 	if (j > dim[2])
@@ -66,22 +83,38 @@ int	*ft_cmp_dim(int *dim, int i, int j)
 		dim[1] = i;
 	if (i > dim[3])
 		dim[3] = i;
+	//printf("fin ft_cmp_dim\n");
 	return (dim);
 }
 
-int	*ft_dim(char **grid, int *dim, t_tet *tet)
+int		*ft_dim(char **grid, int *dim, t_tet *tet)
 {
+	printf("debut ft_dim\n");
+	ft_aff_grid(grid, tet);
 	int	i;
 	int	j;
 
 	i = 0;
-	while (grid[i][0] == '.')
+	j = 0;
+	while (grid[i][j] == '.' && i <= SIZE * 4 - 1)
 	{
-		j = 0;
-		while (grid[i][j] == '.')
+		printf("i = %d\n", i);
+		while (grid[i][j] == '.' && j <= SIZE * 4 - 1)
+		{
+			printf("j = %d\n", j);
+			if (grid[i][j] != '.')
+				break ;
 			j++;
+		}
+		if (j > SIZE * 4 - 1)
+			j--;
+		if (grid[i][j] != '.')
+				break ;
+		j = 0;
 		i++;
 	}
+	printf("I = %d\n", i);
+	printf("J = %d\n", j);
 	dim[0] = j;
 	dim[1] = i;
 	i = 0;
@@ -96,11 +129,13 @@ int	*ft_dim(char **grid, int *dim, t_tet *tet)
 		}
 		i++;
 	}
+	printf("fin ft_dim\n");
 	return (dim);
 }
 
 char	**ft_cmp_grid(char **grid1, char **grid2, t_tet *tet)
 {
+	printf("debut ft_cmp_grid\n");
 	int	**dim;
 	int	i;
 	int	*size;
@@ -122,7 +157,8 @@ char	**ft_cmp_grid(char **grid1, char **grid2, t_tet *tet)
 		i++;
 	}
 	/*printf("\n//////////////////////\n\nsize 1 = %d\nsize 2 = %d\n\n///////////////////////////\n", size[0], size[1]);*/
-	free(dim);
+	printf("fin ft_cmp_grid\n");
+	//free(dim);
 	if (size[0] >= size[1])
 	{
 		/*printf("1\n");*/
